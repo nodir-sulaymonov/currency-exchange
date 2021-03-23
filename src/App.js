@@ -14,8 +14,8 @@ function App() {
         fetch(api)
             .then(res => res.json())
             .then(data => {
-                setCurrencyOptions([data.base, ...Object.keys(data.rates)])
-                setFromCurrency(data.base);
+                setCurrencyOptions([data.base,...Object.keys(data.rates)])
+                setFromCurrency(localStorage.getItem('data'))
             })
     }, [])
 
@@ -25,6 +25,7 @@ function App() {
                 .then(res => res.json())
                 .then(data => {
                     setExchange(data.rates);
+                    localStorage.setItem('data', data.base);
                     }
                 )
         }
